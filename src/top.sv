@@ -1,4 +1,4 @@
-`include "memory.sv"
+`include "memory/memory.sv"
 
 module top (
     input logic clk, 

@@ -1,4 +1,4 @@
-filename = top
+filename = src/top
 pcf_file = iceBlinkPico.pcf
 
 build:
