@@ -12,7 +12,22 @@ module cpu (
     output logic [31:0] dmem_data_in,
     output logic [31:0] dmem_data_out
 );
+// Internal signals
+logic IR_write_enable;
+logic [31:0] instruction;
+logic [31:0] immediate;
 
+Instruction_Register ir (
+    .clk(clk),
+    .reset(1'b0),
+    .IR_write_enable(IR_write_enable),
+    .instruction_in(imem_data_out),
+    .instruction_out(instruction)
+);
 
+Immediate_Generator immgen (
+    .instruction(instruction),
+    .imm_out(immediate)
+);
 
 endmodule
