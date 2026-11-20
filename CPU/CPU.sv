@@ -11,11 +11,22 @@ module cpu (
     output logic [31:0] dmem_address,
     output logic [31:0] dmem_data_in,
     output logic [31:0] dmem_data_out
+
 );
 // Internal signals
 logic IR_write_enable;
 logic [31:0] instruction;
 logic [31:0] immediate;
+
+// ALU signals
+logic [31:0] alu_a;
+logic [31:0] alu_b;
+logic [3:0] alu_operation;
+logic [31:0] alu_result;    
+
+// Register signals
+
+
 
 Instruction_Register ir (
     .clk(clk),
@@ -28,6 +39,13 @@ Instruction_Register ir (
 Immediate_Generator immgen (
     .instruction(instruction),
     .imm_out(immediate)
+);
+
+Alu alu_inst (
+    .a(alu_a),
+    .b(alu_b),
+    .alu_operation(alu_operation),
+    .result(alu_result)
 );
 
 endmodule
